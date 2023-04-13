@@ -1,0 +1,28 @@
+﻿@model PieShop.Models.Pie
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Pie Details</h2>
+<br />
+<img class="topright" style="max-width: 200px; max-height: 200px" alt="@Model.Name" src="@Model.ImageUrl" />
+<br />
+<h3>    @Model.Name</h3>
+<br />
+<p>     @Model.ShortDescription</p>
+<br />
+<p>@Model.LongDescription</p>
+<p style="color:red">₹@Model.Price</p>
+<br />
+<a asp-controller="Pies" asp-action="Index" class=" btn btn-outline-info">Back</a>
+
+<style>
+    .topright {
+        position: absolute;
+        top: 110px;
+        right: 400px;
+        font-size: 18px;
+        width: 250px;
+        height: 200px;
+    }
+</style>

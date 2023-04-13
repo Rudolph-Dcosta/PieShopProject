@@ -1,0 +1,68 @@
+﻿@model PieShop.Models.Pie
+@{
+    ViewData["Title"] = "Add Pie";
+}
+
+<partial name="_AlertPartial" />
+
+
+<form method="post" asp-action="Create" enctype="multipart/form-data">
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary">Add Pie</h2>
+            <hr />
+
+        </div>
+        <div class="mb-3">
+            <label asp-for="Name"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+
+        </div>
+        <div class="mb-3">
+            <label asp-for="ShortDescription"></label>
+            <input asp-for="ShortDescription" class="form-control" />
+            <span asp-validation-for="ShortDescription" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="LongDescription"></label>
+            <textarea asp-for="LongDescription" rows="4" class="form-control"></textarea>
+            <span asp-validation-for="LongDescription" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Price"></label>
+            <input asp-for="Price" class="form-control" />
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="ImageUrl"></label>
+            <input id="uploadbox" type="file" asp-for="ImageUrl" name="file" class="form-control" />
+
+        </div>
+        <button type="submit" onclick="return ValidateInput()" class="btn btn-primary" style="width:150px">Submit</button>
+        <a asp-controller="Pies" asp-action="Index" class="btn btn-secondary" style="width:150px">Back</a>
+    </div>
+</form>
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+
+    <script>
+        function ValidateInput()
+        {
+                if (document.getElementById("uploadbox").value ==""){
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Please upload a image file!',
+                    })
+                    return false
+                }
+                return true
+        }
+    </script>
+}
+
+
+

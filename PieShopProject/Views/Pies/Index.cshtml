@@ -1,0 +1,103 @@
+﻿@model IEnumerable<PieShop.Models.Pie>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<partial name="_AlertPartial" />
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Pies</h2>
+            <p>
+                Our pies are 10 inches and will yield 8 slices. All Gluten Free pies will be topped with a gluten free crumble.
+            </p>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Pies" asp-action="Create" class="btn btn-outline-primary"><i class="bi bi-plus-circle-dotted"></i> Add Pie</a>
+        </div>
+    </div>
+</div>
+
+@*new*@
+<div class="container-fluid">
+    <div  style="display:inline-block" class="px-lg-5">
+        <div style="display:inline-block" class="row">
+            @foreach (var c in Model)
+            {
+                <div class="content">
+                    <div>
+                        <img src="@c.ImageUrl" alt=""  width="200" height="200">
+                        <div class="p-4">
+                            <h5><a asp-controller="Pies" asp-action="Details" asp-route-pieId="@c.PieId">@c.Name</a></h5>
+                            <p class="small text-muted mb-0 Sui">@c.ShortDescription</p>
+                            <br />
+                            <p style="color:red" class="small text-muted mb-0 Sui">₹@c.Price</p>
+                            <a asp-controller="Pies" asp-action="Index" asp-route-pieId="@c.PieId" class="btn btn-outline-primary">Add to cart</a>
+
+                        </div>
+                    </div>
+                </div>
+            }
+            
+        </div>
+    </div>
+</div>
+
+
+
+
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300i,400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style type="text/css">
+      
+      a{
+      text-decoration: none;
+      }
+      
+      .content{
+      width: 24%;
+      margin: 15px;
+      box-sizing: border-box;
+      float: left;
+      text-align: center;
+      border-radius:10px;
+      border-top-right-radius: 10px;
+      border-bottom-right-radius: 10px;
+      padding-top: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      transition: .4s;
+      }
+      .content:hover{
+      box-shadow: 0 0 11px rgba(33,33,33,.2);
+      transform: translate(0px, -8px);
+      transition: .6s;
+      }
+      img{
+      width: 200px;
+      height: 200px;
+      text-align: center;
+      margin: 0 auto;
+      display: block;
+      }
+        p.Sui{
+      text-align: center;
+      color: #b2bec3;
+      padding: 0 8px;
+      }
+     
+      .buy-3{
+      background-color: #0b0b0b;
+      }
+      
+    </style>
+  </head>
+
+
+
